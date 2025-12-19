@@ -1,0 +1,21 @@
+CREATE TABLE Voters (
+    VoterID INT PRIMARY KEY AUTO_INCREMENT,
+    Name VARCHAR(50),
+    Email VARCHAR(50) UNIQUE,
+    HasVoted BOOLEAN DEFAULT FALSE
+);
+
+CREATE TABLE Candidates (
+    CandidateID INT PRIMARY KEY AUTO_INCREMENT,
+    Name VARCHAR(50),
+    Party VARCHAR(50)
+);
+
+CREATE TABLE Votes (
+    VoteID INT PRIMARY KEY AUTO_INCREMENT,
+    VoterID INT,
+    CandidateID INT,
+    VoteDate DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (VoterID) REFERENCES Voters(VoterID),
+    FOREIGN KEY (CandidateID) REFERENCES Candidates(CandidateID)
+);
